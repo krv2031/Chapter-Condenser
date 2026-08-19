@@ -71,8 +71,12 @@ export default function App() {
     saveNote(stageId, '');
   }, [saveNote]);
 
+  const handleToggleDarkMode = useCallback(() => {
+    setSettings(prev => ({ ...prev, darkMode: !prev.darkMode }));
+  }, [setSettings]);
+
   return (
-    <div className="min-h-screen bg-[#f3f2f2] text-[#201e1d] flex flex-col selection:bg-[#e9f8ff] selection:text-[#004961]">
+    <div className="min-h-screen bg-[#f3f2f2] dark:bg-[#141312] text-[#201e1d] dark:text-[#f5f5f4] flex flex-col selection:bg-[#e9f8ff] dark:selection:bg-[#0369a1] selection:text-[#004961] dark:selection:text-white transition-colors duration-200">
       {/* Navigation Header */}
       <Header
         onNavigateHome={handleNavigateHome}
@@ -80,6 +84,8 @@ export default function App() {
         onOpenFlashcards={() => setIsFlashcardsOpen(true)}
         onOpenNotes={() => setIsNotesOpen(true)}
         onOpenSettings={() => setIsSettingsOpen(true)}
+        darkMode={settings.darkMode}
+        onToggleDarkMode={handleToggleDarkMode}
         bookmarkCount={progress.bookmarks.length}
       />
 
@@ -128,7 +134,7 @@ export default function App() {
       </main>
 
       {/* Simplified Broadsheet Footer */}
-      <footer className="border-t border-[#201e1d]/12 bg-[#eae7e7] py-6 text-center text-xs text-[#605d5d]">
+      <footer className="border-t border-[#201e1d]/12 dark:border-neutral-800 bg-[#eae7e7] dark:bg-[#181615] py-6 text-center text-xs text-[#605d5d] dark:text-[#a8a29e] transition-colors">
         <div className="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div>
             <strong>PageTurn</strong> — Curated stages from <em>The Design of Everyday Things</em> & <em>Designing the User Interface</em>.
@@ -136,21 +142,21 @@ export default function App() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => setIsFlashcardsOpen(true)}
-              className="hover:text-[#0369a1] transition-colors font-medium cursor-pointer"
+              className="hover:text-[#0369a1] dark:hover:text-[#38bdf8] transition-colors font-medium cursor-pointer"
             >
               Flashcards
             </button>
             <span>•</span>
             <button
               onClick={() => setIsNotesOpen(true)}
-              className="hover:text-[#0369a1] transition-colors font-medium cursor-pointer"
+              className="hover:text-[#0369a1] dark:hover:text-[#38bdf8] transition-colors font-medium cursor-pointer"
             >
               Study Notes
             </button>
             <span>•</span>
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="hover:text-[#0369a1] transition-colors font-medium cursor-pointer"
+              className="hover:text-[#0369a1] dark:hover:text-[#38bdf8] transition-colors font-medium cursor-pointer"
             >
               Search
             </button>
@@ -158,7 +164,7 @@ export default function App() {
         </div>
       </footer>
 
-      {/* Modals & Drawers with AnimatePresence */}
+      {/* Modals & Drawers */}
       <SearchModal
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}

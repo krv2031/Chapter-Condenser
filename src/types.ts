@@ -12,4 +12,5 @@ export interface ReadingSettings {
   showSourceRefs: boolean;
   fontSize: 'sm' | 'md' | 'lg' | 'xl';
   narrationSpeed: number;
+  darkMode: boolean;
 }

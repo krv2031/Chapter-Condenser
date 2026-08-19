@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { ProgressState, ReadingSettings } from '../types';
 import { MODULES_DATA } from '../data/courseData';
-import confetti from 'canvas-confetti';
 
 const STORAGE_KEY = 'pageturn_progress_v5';
 const SETTINGS_KEY = 'pageturn_settings_v5';
@@ -28,6 +27,7 @@ const DEFAULT_SETTINGS: ReadingSettings = {
   showSourceRefs: true,
   fontSize: 'md',
   narrationSpeed: 1.0,
+  darkMode: false,
 };
 
 export function useProgress() {
@@ -63,7 +63,7 @@ export function useProgress() {
     return DEFAULT_SETTINGS;
   });
 
-  // Save on updates
+  // Save progress on updates
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
@@ -72,26 +72,19 @@ export function useProgress() {
     }
   }, [progress]);
 
+  // Save settings on updates and sync dark class on html
   useEffect(() => {
     try {
       localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
     } catch (e) {
       console.warn('Error saving settings:', e);
     }
-  }, [settings]);
-
-  const triggerCelebration = useCallback(() => {
-    try {
-      confetti({
-        particleCount: 70,
-        spread: 60,
-        origin: { y: 0.65 },
-        colors: ['#0369a1', '#10b981', '#f59e0b', '#8b5cf6'],
-      });
-    } catch (e) {
-      // ignore
+    if (settings.darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
     }
-  }, []);
+  }, [settings]);
 
   const toggleStageComplete = useCallback((moduleId: string, stageId: string, advanceOnComplete: boolean = settings.autoAdvance) => {
     setProgress(prev => {
@@ -103,10 +96,6 @@ export function useProgress() {
 
       const currentMod = MODULES_DATA.find(m => m.id === moduleId);
       const totalStages = currentMod?.stages.length || 0;
-
-      if (!isAlreadyCompleted) {
-        triggerCelebration();
-      }
 
       let nextIndex = prev.currentStageIndex;
       if (!isAlreadyCompleted && advanceOnComplete && currentMod) {
@@ -125,7 +114,7 @@ export function useProgress() {
         currentStageIndex: nextIndex,
       };
     });
-  }, [settings.autoAdvance, triggerCelebration]);
+  }, [settings.autoAdvance]);
 
   const setModuleAndStage = useCallback((moduleId: string, stageIndex: number) => {
     setProgress(prev => ({

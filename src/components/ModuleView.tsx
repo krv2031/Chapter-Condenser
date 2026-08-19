@@ -189,52 +189,52 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
         initial={{ opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2 }}
-        className="pb-8 mb-8 border-b border-[#1c1917]/12 flex flex-col sm:flex-row sm:items-start justify-between gap-6"
+        className="pb-8 mb-8 border-b border-[#1c1917]/12 dark:border-neutral-800 flex flex-col sm:flex-row sm:items-start justify-between gap-6"
       >
         <div>
-          {/* Back to Dashboard */}
+          {/* Back to Home Button */}
           <button
             onClick={onNavigateHome}
-            className="group inline-flex items-center gap-1.5 pt-btn-standard text-[#0369a1] hover:text-[#075985] transition-colors mb-3.5 cursor-pointer"
+            className="group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xs bg-[#f0f9ff] dark:bg-[#0f2438] border border-[#0369a1]/30 dark:border-[#38bdf8]/40 text-[#0369a1] dark:text-[#38bdf8] hover:bg-[#0369a1] hover:text-white dark:hover:bg-[#38bdf8] dark:hover:text-[#121110] text-[15px] font-semibold transition-all mb-4 cursor-pointer shadow-2xs"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span>Dashboard</span>
+            <span>Home</span>
           </button>
 
           {/* Module Label */}
-          <div className="pt-kicker text-[#78716c]">
+          <div className="pt-kicker text-[#78716c] dark:text-[#a8a29e]">
             {module.kicker}
           </div>
 
           {/* Module Viewer Title */}
-          <h1 className="pt-mod-viewer-title text-[#1c1917] mt-2">
+          <h1 className="pt-mod-viewer-title text-[#1c1917] dark:text-[#f5f5f4] mt-2">
             {module.title}
           </h1>
           
           {/* Citation line */}
-          <div className="pt-mod-citation mt-1.5">
+          <div className="pt-mod-citation mt-1.5 text-[#0369a1] dark:text-[#38bdf8]">
             {module.citation}
           </div>
         </div>
 
         {/* Top Right Progress Box */}
-        <div className="bg-white border border-[#1c1917]/12 rounded-md p-5 sm:min-w-[240px] shadow-[0_1px_4px_rgba(0,0,0,0.04)] flex-none">
-          <div className="flex items-baseline justify-between pt-kicker text-[#78716c]">
+        <div className="bg-white dark:bg-[#1e1c1b] border border-[#1c1917]/12 dark:border-neutral-800 rounded-md p-5 sm:min-w-[240px] shadow-[0_1px_4px_rgba(0,0,0,0.04)] flex-none transition-colors">
+          <div className="flex items-baseline justify-between pt-kicker text-[#78716c] dark:text-[#a8a29e]">
             <span>Progress</span>
-            <span className="font-semibold text-[#1c1917] normal-case tracking-normal text-[16px]">{percentComplete}%</span>
+            <span className="font-semibold text-[#1c1917] dark:text-[#f5f5f4] normal-case tracking-normal text-[16px]">{percentComplete}%</span>
           </div>
-          <div className="h-2 bg-[#e7e5e4] rounded-full overflow-hidden mt-2.5">
+          <div className="h-2 bg-[#e7e5e4] dark:bg-[#252221] rounded-full overflow-hidden mt-2.5">
             <motion.div
-              className="h-full bg-[#0369a1] rounded-full"
+              className="h-full bg-[#0369a1] dark:bg-[#38bdf8] rounded-full"
               initial={false}
               animate={{ width: `${percentComplete}%` }}
               transition={{ duration: 0.4 }}
             />
           </div>
-          <div className="text-[13px] text-[#57534e] mt-2.5 flex items-center justify-between">
+          <div className="text-[13px] text-[#57534e] dark:text-[#a8a29e] mt-2.5 flex items-center justify-between">
             <span>{completedCount} of {totalStages} parts</span>
             {completedCount === totalStages && (
-              <span className="text-emerald-700 font-semibold flex items-center gap-1">
+              <span className="text-emerald-700 dark:text-emerald-400 font-semibold flex items-center gap-1">
                 <Check className="w-3.5 h-3.5" /> Done
               </span>
             )}
@@ -246,7 +246,7 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
       <div className="flex items-center gap-2.5 mb-10">
         <button
           onClick={() => scrollRail('left')}
-          className="flex-none w-9 h-9 bg-white border border-[#1c1917]/15 rounded-xs flex items-center justify-center text-[#1c1917] hover:border-[#0369a1] hover:text-[#0369a1] transition-colors cursor-pointer shadow-xs"
+          className="flex-none w-9 h-9 bg-white dark:bg-[#1e1c1b] border border-[#1c1917]/15 dark:border-neutral-800 rounded-xs flex items-center justify-center text-[#1c1917] dark:text-[#f5f5f4] hover:border-[#0369a1] dark:hover:border-[#38bdf8] hover:text-[#0369a1] dark:hover:text-[#38bdf8] transition-colors cursor-pointer shadow-xs"
           aria-label="Scroll parts left"
         >
           <ChevronLeft className="w-4 h-4" />
@@ -260,11 +260,11 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
             const isCompleted = completedList.includes(st.id);
             const isActive = idx === stageIndex;
 
-            let chipStyle = "bg-white text-[#57534e] border border-[#1c1917]/12 hover:border-[#0369a1]/50";
+            let chipStyle = "bg-white dark:bg-[#1e1c1b] text-[#57534e] dark:text-[#a8a29e] border border-[#1c1917]/12 dark:border-neutral-800 hover:border-[#0369a1]/50 dark:hover:border-[#38bdf8]/50";
             if (isActive) {
-              chipStyle = "bg-[#0369a1] text-white border border-[#0369a1] shadow-xs";
+              chipStyle = "bg-[#0369a1] dark:bg-[#38bdf8] text-white dark:text-[#121110] border border-[#0369a1] dark:border-[#38bdf8] shadow-xs font-semibold";
             } else if (isCompleted) {
-              chipStyle = "bg-[#f0f9ff] text-[#075985] border border-[#0369a1]/30 font-semibold";
+              chipStyle = "bg-[#f0f9ff] dark:bg-[#0f2438] text-[#075985] dark:text-[#38bdf8] border border-[#0369a1]/30 dark:border-[#38bdf8]/30 font-semibold";
             }
 
             return (
@@ -275,11 +275,11 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
                 className={`flex-none inline-flex items-center gap-2 px-3.5 py-2 rounded-xs pt-chip transition-colors duration-150 cursor-pointer ${chipStyle}`}
               >
                 {isCompleted ? (
-                  <CheckCircle2 className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-[#0369a1]'}`} />
+                  <CheckCircle2 className={`w-3.5 h-3.5 ${isActive ? 'text-white dark:text-[#121110]' : 'text-[#0369a1] dark:text-[#38bdf8]'}`} />
                 ) : isActive ? (
-                  <span className="w-2 h-2 rounded-full bg-white flex-none"></span>
+                  <span className="w-2 h-2 rounded-full bg-white dark:bg-[#121110] flex-none"></span>
                 ) : (
-                  <Circle className="w-3 h-3 text-[#a8a29e] flex-none" />
+                  <Circle className="w-3 h-3 text-[#a8a29e] dark:text-neutral-600 flex-none" />
                 )}
                 <span>Part {idx + 1}: {st.label}</span>
               </motion.button>
@@ -289,14 +289,14 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
 
         <button
           onClick={() => scrollRail('right')}
-          className="flex-none w-9 h-9 bg-white border border-[#1c1917]/15 rounded-xs flex items-center justify-center text-[#1c1917] hover:border-[#0369a1] hover:text-[#0369a1] transition-colors cursor-pointer shadow-xs"
+          className="flex-none w-9 h-9 bg-white dark:bg-[#1e1c1b] border border-[#1c1917]/15 dark:border-neutral-800 rounded-xs flex items-center justify-center text-[#1c1917] dark:text-[#f5f5f4] hover:border-[#0369a1] dark:hover:border-[#38bdf8] hover:text-[#0369a1] dark:hover:text-[#38bdf8] transition-colors cursor-pointer shadow-xs"
           aria-label="Scroll parts right"
         >
           <ChevronRight className="w-4 h-4" />
         </button>
       </div>
 
-      {/* Main Reading Canvas with Smooth Part Page Turn Animation */}
+      {/* Main Reading Canvas */}
       <AnimatePresence mode="wait">
         <motion.div
           key={stage.id}
@@ -304,18 +304,18 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -6 }}
           transition={{ duration: 0.22, ease: "easeOut" }}
-          className="bg-white border border-[#1c1917]/12 rounded-md p-7 sm:p-12 shadow-[0_1px_4px_rgba(0,0,0,0.04)]"
+          className="bg-white dark:bg-[#1e1c1b] border border-[#1c1917]/12 dark:border-neutral-800 rounded-md p-7 sm:p-12 shadow-[0_1px_4px_rgba(0,0,0,0.04)] transition-colors"
         >
           {/* Stage Kicker Header Row */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-[#1c1917]/10">
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-[#1c1917]/10 dark:border-neutral-800">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="pt-kicker text-[#0369a1]">
+              <span className="pt-kicker text-[#0369a1] dark:text-[#38bdf8]">
                 Part {stageIndex + 1}
               </span>
               {settings.showSourceRefs && stage.source && (
                 <>
-                  <span className="text-[#a8a29e] select-none text-xs">—</span>
-                  <span className="pt-kicker text-[#78716c]">
+                  <span className="text-[#a8a29e] dark:text-neutral-600 select-none text-xs">—</span>
+                  <span className="pt-kicker text-[#78716c] dark:text-[#a8a29e]">
                     {stage.source}
                   </span>
                 </>
@@ -325,15 +325,15 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
             <div className="flex items-center gap-2.5">
               {/* Audio Read-Aloud */}
               {isSupported && (
-                <div className="flex items-center gap-1.5 bg-[#f5f5f4] rounded-xs px-3 py-1.5 border border-[#1c1917]/8">
+                <div className="flex items-center gap-1.5 bg-[#f5f5f4] dark:bg-[#252221] rounded-xs px-3 py-1.5 border border-[#1c1917]/8 dark:border-neutral-700">
                   <button
                     onClick={handleReadAloud}
-                    className="flex items-center gap-1.5 pt-btn-standard text-[13px] text-[#1c1917] hover:text-[#0369a1] cursor-pointer"
+                    className="flex items-center gap-1.5 pt-btn-standard text-[13px] text-[#1c1917] dark:text-[#f5f5f4] hover:text-[#0369a1] dark:hover:text-[#38bdf8] cursor-pointer"
                     title="Listen to stage narration"
                   >
                     {isPlaying ? (
                       <>
-                        <Pause className="w-3.5 h-3.5 text-[#0369a1]" />
+                        <Pause className="w-3.5 h-3.5 text-[#0369a1] dark:text-[#38bdf8]" />
                         <span>Pause</span>
                       </>
                     ) : (
@@ -346,7 +346,7 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
                   {isPlaying && (
                     <button
                       onClick={() => changeSpeed(speed === 1.0 ? 1.25 : speed === 1.25 ? 1.5 : 1.0)}
-                      className="ml-1 text-[11px] font-semibold px-1.5 py-0.5 bg-white rounded border border-[#1c1917]/10 hover:bg-neutral-100 cursor-pointer"
+                      className="ml-1 text-[11px] font-semibold px-1.5 py-0.5 bg-white dark:bg-[#1e1c1b] rounded border border-[#1c1917]/10 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer text-[#1c1917] dark:text-white"
                     >
                       {speed}x
                     </button>
@@ -360,10 +360,10 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
                 onClick={() => onToggleBookmark(stage.id)}
                 className={`p-2 rounded-xs border transition-all cursor-pointer ${
                   isBookmarked 
-                    ? 'bg-[#f0f9ff] border-[#0369a1] text-[#0369a1]' 
-                    : 'bg-white border-[#1c1917]/15 text-[#78716c] hover:text-[#1c1917] hover:border-[#0369a1]'
+                    ? 'bg-[#f0f9ff] dark:bg-[#0f2438] border-[#0369a1] dark:border-[#38bdf8] text-[#0369a1] dark:text-[#38bdf8]' 
+                    : 'bg-white dark:bg-[#252221] border-[#1c1917]/15 dark:border-neutral-700 text-[#78716c] dark:text-[#a8a29e] hover:text-[#1c1917] dark:hover:text-white hover:border-[#0369a1] dark:hover:border-[#38bdf8]'
                 }`}
-                title={isBookmarked ? 'Bookmarked' : 'Bookmark Stage'}
+                title={isBookmarked ? 'Bookmarked' : 'Bookmark Part'}
               >
                 <Bookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current' : ''}`} />
               </motion.button>
@@ -371,12 +371,12 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
           </div>
 
           {/* Stage Title */}
-          <h2 className="pt-stage-title text-[#1c1917] mt-8 mb-6">
+          <h2 className="pt-stage-title text-[#1c1917] dark:text-[#f5f5f4] mt-8 mb-6">
             {stage.title}
           </h2>
 
           {/* Opening Narrative Intro */}
-          <p className="pt-stage-intro text-[#1c1917] mb-12 text-pretty">
+          <p className="pt-stage-intro text-[#1c1917] dark:text-[#e7e5e4] mb-12 text-pretty">
             {stage.intro}
           </p>
 
@@ -384,14 +384,14 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
           <div className="flex flex-col gap-10 mb-12">
             {stage.points.map((pt) => (
               <div key={pt.n} className="grid grid-cols-[40px_1fr] sm:grid-cols-[52px_1fr] gap-4 sm:gap-6 items-start">
-                <div className="text-[36px] sm:text-[40px] text-[#0369a1] font-semibold leading-none pt-0.5 select-none font-serif">
+                <div className="text-[36px] sm:text-[40px] text-[#0369a1] dark:text-[#38bdf8] font-semibold leading-none pt-0.5 select-none font-serif">
                   {pt.n}
                 </div>
                 <div>
-                  <h4 className="pt-takeaway-head text-[#1c1917] mb-2">
+                  <h4 className="pt-takeaway-head text-[#1c1917] dark:text-[#f5f5f4] mb-2">
                     {pt.head}
                   </h4>
-                  <p className="pt-takeaway-body text-[#444141] text-pretty">
+                  <p className="pt-takeaway-body text-[#444141] dark:text-[#d6d3d1] text-pretty">
                     {pt.text}
                   </p>
                 </div>
@@ -401,15 +401,15 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
 
           {/* Real-World Examples Box */}
           {stage.examples && stage.examples.length > 0 && (
-            <div className="bg-[#f0f9ff]/80 border border-[#0369a1]/25 rounded-md p-6 sm:p-8 mb-10">
-              <div className="flex items-center gap-2 pt-kicker text-[#0369a1] mb-4">
-                <Lightbulb className="w-4 h-4 text-[#0369a1]" />
+            <div className="bg-[#f0f9ff]/80 dark:bg-[#0f2438]/60 border border-[#0369a1]/25 dark:border-[#38bdf8]/30 rounded-md p-6 sm:p-8 mb-10 transition-colors">
+              <div className="flex items-center gap-2 pt-kicker text-[#0369a1] dark:text-[#38bdf8] mb-4">
+                <Lightbulb className="w-4 h-4 text-[#0369a1] dark:text-[#38bdf8]" />
                 Examples & Case Studies
               </div>
               <div className="flex flex-col gap-4">
                 {stage.examples.map((ex, i) => (
-                  <div key={i} className="pt-takeaway-body text-[#0c4a6e] flex items-start gap-3">
-                    <span className="text-[#0369a1] font-semibold text-2xl leading-none">•</span>
+                  <div key={i} className="pt-takeaway-body text-[#0c4a6e] dark:text-[#bae6fd] flex items-start gap-3">
+                    <span className="text-[#0369a1] dark:text-[#38bdf8] font-semibold text-2xl leading-none">•</span>
                     <span className="text-pretty">{ex}</span>
                   </div>
                 ))}
@@ -419,11 +419,11 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
 
           {/* Key Takeaway Insight Callout */}
           {stage.keyTakeaway && (
-            <div className="bg-[#fafaf9] border-l-4 border-[#0369a1] p-5 sm:p-6 mb-10 rounded-r-md">
-              <div className="pt-kicker text-[#0369a1]">
+            <div className="bg-[#fafaf9] dark:bg-[#252221] border-l-4 border-[#0369a1] dark:border-[#38bdf8] p-5 sm:p-6 mb-10 rounded-r-md transition-colors">
+              <div className="pt-kicker text-[#0369a1] dark:text-[#38bdf8]">
                 Key Insight
               </div>
-              <div className="text-[19px] text-[#1c1917] font-semibold mt-1.5 leading-snug">
+              <div className="text-[19px] text-[#1c1917] dark:text-[#f5f5f4] font-semibold mt-1.5 leading-snug">
                 {stage.keyTakeaway}
               </div>
             </div>
@@ -431,16 +431,16 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
 
           {/* Interactive Knowledge Check Quiz */}
           {currentQuiz && (
-            <div className="bg-[#fafaf9] border border-[#1c1917]/12 rounded-md p-6 sm:p-8 mb-10 shadow-2xs">
+            <div className="bg-[#fafaf9] dark:bg-[#252221] border border-[#1c1917]/12 dark:border-neutral-800 rounded-md p-6 sm:p-8 mb-10 shadow-2xs transition-colors">
               {/* Header */}
-              <div className="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-[#1c1917]/8">
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-[#1c1917]/8 dark:border-neutral-700">
                 <div className="flex items-center gap-2.5">
-                  <div className="flex items-center gap-2 pt-kicker text-[#0369a1]">
-                    <HelpCircle className="w-4 h-4 text-[#0369a1]" />
+                  <div className="flex items-center gap-2 pt-kicker text-[#0369a1] dark:text-[#38bdf8]">
+                    <HelpCircle className="w-4 h-4 text-[#0369a1] dark:text-[#38bdf8]" />
                     Knowledge Check
                   </div>
                   {quizPool.length > 1 && (
-                    <span className="text-[12px] text-[#78716c] font-medium bg-[#e7e5e4]/70 px-2 py-0.5 rounded-xs">
+                    <span className="text-[12px] text-[#78716c] dark:text-[#a8a29e] font-medium bg-[#e7e5e4]/70 dark:bg-neutral-800 px-2 py-0.5 rounded-xs">
                       Question {(activeQuizIndex % quizPool.length) + 1} of {quizPool.length}
                     </span>
                   )}
@@ -451,8 +451,8 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
                   {quizPool.length > 1 && (
                     <button
                       onClick={handleNextQuestion}
-                      className="inline-flex items-center gap-1.5 text-[12px] text-[#1c1917] hover:text-[#0369a1] bg-white border border-[#1c1917]/15 px-3 py-1 rounded-xs pt-btn-standard transition-colors cursor-pointer shadow-2xs hover:border-[#0369a1]"
-                      title="Advance to next question in this stage"
+                      className="inline-flex items-center gap-1.5 text-[12px] text-[#1c1917] dark:text-[#f5f5f4] hover:text-[#0369a1] dark:hover:text-[#38bdf8] bg-white dark:bg-[#1e1c1b] border border-[#1c1917]/15 dark:border-neutral-700 px-3 py-1 rounded-xs pt-btn-standard transition-colors cursor-pointer shadow-2xs hover:border-[#0369a1] dark:hover:border-[#38bdf8]"
+                      title="Advance to next question in this part"
                     >
                       <span>Next Question</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -464,7 +464,7 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
                       initial={{ scale: 0.9, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       onClick={handleRetryCurrentQuestion}
-                      className="inline-flex items-center gap-1 text-[12px] font-semibold px-3 py-1 rounded-xs border bg-rose-50 border-rose-300 text-rose-800 hover:bg-rose-100 hover:border-rose-400 transition-all cursor-pointer shadow-2xs"
+                      className="inline-flex items-center gap-1 text-[12px] font-semibold px-3 py-1 rounded-xs border bg-rose-50 dark:bg-rose-950/40 border-rose-300 dark:border-rose-800 text-rose-800 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-900/50 transition-all cursor-pointer shadow-2xs"
                     >
                       <RotateCcw className="w-3 h-3" />
                       <span>Retry</span>
@@ -475,7 +475,7 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
                     <motion.span 
                       initial={{ scale: 0.9, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
-                      className="text-[12px] font-semibold px-2.5 py-1 rounded-xs bg-emerald-50 border border-emerald-300 text-emerald-800 flex items-center gap-1"
+                      className="text-[12px] font-semibold px-2.5 py-1 rounded-xs bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 flex items-center gap-1"
                     >
                       <Check className="w-3.5 h-3.5" /> Passed ✓
                     </motion.span>
@@ -484,7 +484,7 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
               </div>
 
               {/* Question Text */}
-              <p className="font-semibold text-[20px] text-[#1c1917] mb-5 leading-snug">
+              <p className="font-semibold text-[20px] text-[#1c1917] dark:text-[#f5f5f4] mb-5 leading-snug">
                 {currentQuiz.question}
               </p>
 
@@ -494,15 +494,15 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
                   const isSelected = selectedQuizOption === oIdx;
                   const isCorrect = opt.isCorrect;
 
-                  let optStyle = "bg-white border border-[#1c1917]/15 hover:border-[#0369a1] text-[#1c1917]";
+                  let optStyle = "bg-white dark:bg-[#1e1c1b] border border-[#1c1917]/15 dark:border-neutral-700 hover:border-[#0369a1] dark:hover:border-[#38bdf8] text-[#1c1917] dark:text-[#f5f5f4]";
                   if (showQuizResult) {
                     if (isCorrect) {
-                      optStyle = "bg-emerald-50 border-emerald-500 text-emerald-950 font-semibold shadow-xs";
+                      optStyle = "bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 dark:border-emerald-600 text-emerald-950 dark:text-emerald-200 font-semibold shadow-xs";
                     } else if (isSelected) {
-                      optStyle = "bg-rose-50 border-rose-400 text-rose-950";
+                      optStyle = "bg-rose-50 dark:bg-rose-950/40 border-rose-400 dark:border-rose-600 text-rose-950 dark:text-rose-200";
                     }
                   } else if (isSelected) {
-                    optStyle = "bg-[#f0f9ff] border-[#0369a1] text-[#075985]";
+                    optStyle = "bg-[#f0f9ff] dark:bg-[#0f2438] border-[#0369a1] dark:border-[#38bdf8] text-[#075985] dark:text-[#38bdf8]";
                   }
 
                   return (
@@ -517,14 +517,14 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
                         {String.fromCharCode(65 + oIdx)}
                       </span>
                       <span className="flex-1">{opt.text}</span>
-                      {showQuizResult && isCorrect && <Check className="w-5 h-5 text-emerald-700 flex-none" />}
-                      {showQuizResult && isSelected && !isCorrect && <X className="w-5 h-5 text-rose-700 flex-none" />}
+                      {showQuizResult && isCorrect && <Check className="w-5 h-5 text-emerald-700 dark:text-emerald-400 flex-none" />}
+                      {showQuizResult && isSelected && !isCorrect && <X className="w-5 h-5 text-rose-700 dark:text-rose-400 flex-none" />}
                     </motion.button>
                   );
                 })}
               </div>
 
-              {/* Explanation & Action Footer with Animation */}
+              {/* Explanation & Action Footer */}
               <AnimatePresence>
                 {showQuizResult && (
                   <motion.div 
@@ -532,14 +532,14 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="mt-5 p-5 bg-white border border-[#1c1917]/12 rounded-md shadow-xs overflow-hidden"
+                    className="mt-5 p-5 bg-white dark:bg-[#1e1c1b] border border-[#1c1917]/12 dark:border-neutral-700 rounded-md shadow-xs overflow-hidden"
                   >
-                    <div className="text-[15px] text-[#444141] leading-relaxed">
-                      <strong className="text-[#1c1917] font-semibold">Explanation:</strong> {currentQuiz.explanation}
+                    <div className="text-[15px] text-[#444141] dark:text-[#d6d3d1] leading-relaxed">
+                      <strong className="text-[#1c1917] dark:text-[#f5f5f4] font-semibold">Explanation:</strong> {currentQuiz.explanation}
                     </div>
 
-                    <div className="mt-4 pt-3 border-t border-[#1c1917]/8 flex flex-wrap items-center justify-between gap-3">
-                      <span className="text-[13px] text-[#78716c]">
+                    <div className="mt-4 pt-3 border-t border-[#1c1917]/8 dark:border-neutral-800 flex flex-wrap items-center justify-between gap-3">
+                      <span className="text-[13px] text-[#78716c] dark:text-[#a8a29e]">
                         {isCurrentSelectionCorrect ? 'Correct! Well done.' : 'Incorrect. Click "Retry" to reshuffle and try again.'}
                       </span>
 
@@ -547,7 +547,7 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
                         {!isCurrentSelectionCorrect && (
                           <button
                             onClick={handleRetryCurrentQuestion}
-                            className="px-3.5 py-1.5 bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-800 rounded-xs pt-btn-standard text-[13px] flex items-center gap-1.5 cursor-pointer transition-colors shadow-2xs"
+                            className="px-3.5 py-1.5 bg-rose-50 dark:bg-rose-950/40 hover:bg-rose-100 dark:hover:bg-rose-900/50 border border-rose-200 dark:border-rose-800 text-rose-800 dark:text-rose-300 rounded-xs pt-btn-standard text-[13px] flex items-center gap-1.5 cursor-pointer transition-colors shadow-2xs"
                           >
                             <RotateCcw className="w-3.5 h-3.5" />
                             <span>Retry</span>
@@ -557,7 +557,7 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
                         {quizPool.length > 1 && (
                           <button
                             onClick={handleNextQuestion}
-                            className="px-4 py-1.5 bg-[#0369a1] hover:bg-[#075985] text-white rounded-xs pt-btn-standard text-[13px] flex items-center gap-1.5 cursor-pointer transition-colors shadow-2xs"
+                            className="px-4 py-1.5 bg-[#0369a1] dark:bg-[#38bdf8] hover:bg-[#075985] dark:hover:bg-[#0ea5e9] text-white dark:text-[#121110] font-semibold rounded-xs pt-btn-standard text-[13px] flex items-center gap-1.5 cursor-pointer transition-colors shadow-2xs"
                           >
                             <span>Next Question</span>
                             <ArrowRight className="w-3.5 h-3.5" />
@@ -572,14 +572,14 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
           )}
 
           {/* Stage Reflection Notes */}
-          <div className="bg-[#fafaf9] border border-[#1c1917]/12 rounded-md p-5 sm:p-6 mb-10">
+          <div className="bg-[#fafaf9] dark:bg-[#252221] border border-[#1c1917]/12 dark:border-neutral-800 rounded-md p-5 sm:p-6 mb-10 transition-colors">
             <div className="flex items-center justify-between gap-2 mb-3">
-              <label className="pt-kicker text-[#57534e] flex items-center gap-1.5">
-                <MessageSquareQuote className="w-3.5 h-3.5 text-[#0369a1]" />
+              <label className="pt-kicker text-[#57534e] dark:text-[#d6d3d1] flex items-center gap-1.5">
+                <MessageSquareQuote className="w-3.5 h-3.5 text-[#0369a1] dark:text-[#38bdf8]" />
                 Study Notes & Reflections
               </label>
               {isNoteSaved && (
-                <span className="text-[13px] text-emerald-700 font-semibold flex items-center gap-1">
+                <span className="text-[13px] text-emerald-700 dark:text-emerald-400 font-semibold flex items-center gap-1">
                   <Check className="w-3.5 h-3.5" /> Saved
                 </span>
               )}
@@ -587,13 +587,13 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
             <textarea
               value={noteText}
               onChange={(e) => setNoteText(e.target.value)}
-              placeholder="Record your personal notes, insights, or observations for this stage..."
-              className="w-full h-24 p-3.5 bg-white border border-[#1c1917]/15 focus:border-[#0369a1] rounded-xs text-[15px] resize-y outline-none transition-colors leading-relaxed"
+              placeholder="Record your personal notes, insights, or observations for this part..."
+              className="w-full h-24 p-3.5 bg-white dark:bg-[#1e1c1b] border border-[#1c1917]/15 dark:border-neutral-700 focus:border-[#0369a1] dark:focus:border-[#38bdf8] rounded-xs text-[15px] text-[#1c1917] dark:text-[#f5f5f4] resize-y outline-none transition-colors leading-relaxed"
             />
             <div className="flex justify-end mt-3">
               <button
                 onClick={handleNoteSave}
-                className="px-4 py-2 bg-[#0369a1] hover:bg-[#075985] text-white rounded-xs pt-btn-standard text-[13px] uppercase tracking-wider cursor-pointer transition-colors shadow-2xs"
+                className="px-4 py-2 bg-[#0369a1] dark:bg-[#38bdf8] hover:bg-[#075985] dark:hover:bg-[#0ea5e9] text-white dark:text-[#121110] font-semibold rounded-xs pt-btn-standard text-[13px] uppercase tracking-wider cursor-pointer transition-colors shadow-2xs"
               >
                 Save Note
               </button>
@@ -601,15 +601,15 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
           </div>
 
           {/* Bottom Stage Navigation Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-[#1c1917]/12">
-            {/* Previous Stage Button */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-[#1c1917]/12 dark:border-neutral-800">
+            {/* Previous Part Button */}
             <button
               onClick={() => onSelectStage(stageIndex - 1)}
               disabled={stageIndex === 0}
-              className={`w-full sm:w-auto px-6 py-3 border border-[#1c1917]/20 rounded-xs pt-btn-footer flex items-center justify-center gap-2 cursor-pointer transition-colors ${
+              className={`w-full sm:w-auto px-6 py-3 border border-[#1c1917]/20 dark:border-neutral-700 rounded-xs pt-btn-footer flex items-center justify-center gap-2 cursor-pointer transition-colors ${
                 stageIndex === 0
-                  ? 'opacity-30 cursor-not-allowed bg-neutral-100 text-neutral-400'
-                  : 'bg-white hover:border-[#0369a1] hover:text-[#0369a1] text-[#1c1917] shadow-xs'
+                  ? 'opacity-30 cursor-not-allowed bg-neutral-100 dark:bg-neutral-800 text-neutral-400 dark:text-neutral-600'
+                  : 'bg-white dark:bg-[#252221] hover:border-[#0369a1] dark:hover:border-[#38bdf8] hover:text-[#0369a1] dark:hover:text-[#38bdf8] text-[#1c1917] dark:text-[#f5f5f4] shadow-xs'
               }`}
             >
               <ArrowLeft className="w-4 h-4" />
@@ -617,7 +617,7 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
             </button>
 
             {/* Position Indicator */}
-            <div className="pt-kicker text-[#78716c]">
+            <div className="pt-kicker text-[#78716c] dark:text-[#a8a29e]">
               Part {stageIndex + 1} of {totalStages}
             </div>
 
@@ -628,7 +628,7 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
               className={`w-full sm:w-auto px-7 py-3.5 rounded-xs pt-btn-footer flex items-center justify-center gap-2 cursor-pointer transition-colors shadow-xs ${
                 isStageCompleted
                   ? 'bg-emerald-700 hover:bg-emerald-800 text-white'
-                  : 'bg-[#0369a1] hover:bg-[#075985] text-white'
+                  : 'bg-[#0369a1] dark:bg-[#38bdf8] hover:bg-[#075985] dark:hover:bg-[#0ea5e9] text-white dark:text-[#121110] font-semibold'
               }`}
             >
               {isStageCompleted ? (

@@ -58,7 +58,7 @@ const CORE_PRINCIPLES_FLASHCARDS: Flashcard[] = [
     id: 'f7',
     category: 'Don Norman • Error Prevention',
     front: 'What are the Three Forcing Functions?',
-    back: '1. Interlock (forces sequence: microwave power cuts when door opens)\n2. Lockin (keeps operation active: prevents shutdown until files are saved)\n3. Lockout (prevents entry into dangerous state).',
+    back: '1. Interlock (forces sequence: microwave power cuts when door opens)\n2. Lock-in (keeps operation active: prevents shutdown until files are saved)\n3. Lockout (prevents entry into dangerous state).',
     example: 'A car ignition switch requiring a key to start and requiring Park/Reverse to release key.'
   },
   {
@@ -158,7 +158,7 @@ export const FlashcardsModal: React.FC<FlashcardsModalProps> = ({ isOpen, onClos
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-[#1c1917]/50 backdrop-blur-xs"
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs"
           />
 
           {/* Modal Content */}
@@ -167,16 +167,16 @@ export const FlashcardsModal: React.FC<FlashcardsModalProps> = ({ isOpen, onClos
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="relative z-10 bg-white border border-[#1c1917]/15 rounded-md w-full max-w-xl shadow-[0_8px_30px_rgba(0,0,0,0.12)] p-6 flex flex-col max-h-[90vh]"
+            className="relative z-10 bg-white dark:bg-[#1e1c1b] border border-[#1c1917]/15 dark:border-neutral-800 rounded-md w-full max-w-xl shadow-[0_8px_30px_rgba(0,0,0,0.12)] p-6 flex flex-col max-h-[90vh] transition-colors"
           >
             {/* Header */}
-            <div className="flex items-center justify-between pb-3 border-b border-[#1c1917]/12 mb-3">
+            <div className="flex items-center justify-between pb-3 border-b border-[#1c1917]/12 dark:border-neutral-800 mb-3">
               <div className="flex items-center gap-2">
-                <Brain className="w-5 h-5 text-[#0369a1]" />
-                <h3 className="font-semibold text-xl text-[#1c1917]">Study Flashcards</h3>
+                <Brain className="w-5 h-5 text-[#0369a1] dark:text-[#38bdf8]" />
+                <h3 className="font-semibold text-xl text-[#1c1917] dark:text-[#f5f5f4]">Study Flashcards</h3>
               </div>
-              <button onClick={onClose} className="p-1 rounded hover:bg-neutral-100 cursor-pointer">
-                <X className="w-5 h-5 text-neutral-500" />
+              <button onClick={onClose} className="p-1 rounded hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer">
+                <X className="w-5 h-5 text-neutral-500 dark:text-neutral-400" />
               </button>
             </div>
 
@@ -185,7 +185,9 @@ export const FlashcardsModal: React.FC<FlashcardsModalProps> = ({ isOpen, onClos
               <button
                 onClick={() => handleFilterChange('core')}
                 className={`px-3 py-1 rounded-xs transition-all whitespace-nowrap cursor-pointer ${
-                  selectedFilter === 'core' ? 'bg-[#0369a1] text-white font-semibold shadow-2xs' : 'bg-[#f5f5f4] text-[#57534e] hover:text-[#1c1917]'
+                  selectedFilter === 'core'
+                    ? 'bg-[#0369a1] dark:bg-[#38bdf8] text-white dark:text-[#121110] font-semibold shadow-2xs'
+                    : 'bg-[#f5f5f4] dark:bg-[#252221] text-[#57534e] dark:text-[#d6d3d1] hover:text-[#1c1917] dark:hover:text-white'
                 }`}
               >
                 Core Principles (10)
@@ -195,7 +197,9 @@ export const FlashcardsModal: React.FC<FlashcardsModalProps> = ({ isOpen, onClos
                   key={m.id}
                   onClick={() => handleFilterChange(m.id)}
                   className={`px-3 py-1 rounded-xs transition-all whitespace-nowrap cursor-pointer ${
-                    selectedFilter === m.id ? 'bg-[#0369a1] text-white font-semibold shadow-2xs' : 'bg-[#f5f5f4] text-[#57534e] hover:text-[#1c1917]'
+                    selectedFilter === m.id
+                      ? 'bg-[#0369a1] dark:bg-[#38bdf8] text-white dark:text-[#121110] font-semibold shadow-2xs'
+                      : 'bg-[#f5f5f4] dark:bg-[#252221] text-[#57534e] dark:text-[#d6d3d1] hover:text-[#1c1917] dark:hover:text-white'
                   }`}
                 >
                   {m.kicker} ({m.stages.length})
@@ -204,7 +208,7 @@ export const FlashcardsModal: React.FC<FlashcardsModalProps> = ({ isOpen, onClos
             </div>
 
             {/* Category & Progress */}
-            <div className="flex items-baseline justify-between text-xs pt-kicker text-[#78716c] mb-2 font-semibold">
+            <div className="flex items-baseline justify-between text-xs pt-kicker text-[#78716c] dark:text-[#a8a29e] mb-2 font-semibold">
               <span className="line-clamp-1">{card.category}</span>
               <span className="flex-none font-mono">Card {currentIndex + 1} of {allCards.length}</span>
             </div>
@@ -214,13 +218,13 @@ export const FlashcardsModal: React.FC<FlashcardsModalProps> = ({ isOpen, onClos
               onClick={() => setIsFlipped(!isFlipped)}
               className={`min-h-[250px] p-6 rounded-md border transition-all duration-200 cursor-pointer flex flex-col justify-between select-none ${
                 isFlipped
-                  ? 'bg-[#f0f9ff]/60 border-[#0369a1]/40 shadow-2xs'
-                  : 'bg-[#fafaf9] border-[#1c1917]/15 hover:border-[#0369a1]/50 shadow-xs'
+                  ? 'bg-[#f0f9ff]/60 dark:bg-[#0f2438]/60 border-[#0369a1]/40 dark:border-[#38bdf8]/40 shadow-2xs'
+                  : 'bg-[#fafaf9] dark:bg-[#252221] border-[#1c1917]/15 dark:border-neutral-700 hover:border-[#0369a1]/50 dark:hover:border-[#38bdf8]/50 shadow-xs'
               }`}
             >
-              <div className="flex items-center justify-between text-xs text-[#78716c] font-semibold pt-kicker">
+              <div className="flex items-center justify-between text-xs text-[#78716c] dark:text-[#a8a29e] font-semibold pt-kicker">
                 <span>{isFlipped ? 'ANSWER / SUMMARY' : 'QUESTION / PROMPT'}</span>
-                <span className="flex items-center gap-1 text-[#0369a1]">
+                <span className="flex items-center gap-1 text-[#0369a1] dark:text-[#38bdf8]">
                   <RotateCw className="w-3 h-3" /> Click to flip
                 </span>
               </div>
@@ -235,7 +239,7 @@ export const FlashcardsModal: React.FC<FlashcardsModalProps> = ({ isOpen, onClos
                       exit={{ opacity: 0, y: -4 }}
                       transition={{ duration: 0.15 }}
                     >
-                      <h4 className="text-xl sm:text-2xl font-semibold text-[#1c1917] leading-snug">
+                      <h4 className="text-xl sm:text-2xl font-semibold text-[#1c1917] dark:text-[#f5f5f4] leading-snug">
                         {card.front}
                       </h4>
                     </motion.div>
@@ -248,11 +252,11 @@ export const FlashcardsModal: React.FC<FlashcardsModalProps> = ({ isOpen, onClos
                       transition={{ duration: 0.15 }}
                       className="space-y-3"
                     >
-                      <p className="text-base text-[#1c1917] leading-relaxed">
+                      <p className="text-base text-[#1c1917] dark:text-[#f5f5f4] leading-relaxed">
                         {card.back}
                       </p>
                       {card.example && (
-                        <div className="p-3 bg-white border border-[#0369a1]/20 rounded-xs text-xs text-[#075985] leading-relaxed">
+                        <div className="p-3 bg-white dark:bg-[#1e1c1b] border border-[#0369a1]/20 dark:border-[#38bdf8]/30 rounded-xs text-xs text-[#075985] dark:text-[#bae6fd] leading-relaxed">
                           <strong>Example:</strong> {card.example}
                         </div>
                       )}
@@ -261,9 +265,9 @@ export const FlashcardsModal: React.FC<FlashcardsModalProps> = ({ isOpen, onClos
                 </AnimatePresence>
               </div>
 
-              <div className="text-right text-[11px] text-[#78716c]">
+              <div className="text-right text-[11px] text-[#78716c] dark:text-[#a8a29e]">
                 {isMastered ? (
-                  <span className="text-emerald-700 font-semibold flex items-center justify-end gap-1">
+                  <span className="text-emerald-700 dark:text-emerald-400 font-semibold flex items-center justify-end gap-1">
                     <CheckCircle className="w-3.5 h-3.5" /> Marked as Mastered
                   </span>
                 ) : (
@@ -273,10 +277,10 @@ export const FlashcardsModal: React.FC<FlashcardsModalProps> = ({ isOpen, onClos
             </div>
 
             {/* Bottom Controls */}
-            <div className="flex items-center justify-between mt-4 pt-3 border-t border-[#1c1917]/12 gap-2">
+            <div className="flex items-center justify-between mt-4 pt-3 border-t border-[#1c1917]/12 dark:border-neutral-800 gap-2">
               <button
                 onClick={handlePrev}
-                className="px-3.5 py-2 rounded-xs border border-[#1c1917]/15 bg-white hover:bg-neutral-50 text-[#1c1917] text-xs pt-btn-standard flex items-center gap-1 cursor-pointer transition-colors shadow-2xs"
+                className="px-3.5 py-2 rounded-xs border border-[#1c1917]/15 dark:border-neutral-700 bg-white dark:bg-[#252221] hover:bg-neutral-50 dark:hover:bg-neutral-800 text-[#1c1917] dark:text-[#f5f5f4] text-xs pt-btn-standard flex items-center gap-1 cursor-pointer transition-colors shadow-2xs"
               >
                 <ChevronLeft className="w-4 h-4" />
                 <span>Prev</span>
@@ -286,17 +290,17 @@ export const FlashcardsModal: React.FC<FlashcardsModalProps> = ({ isOpen, onClos
                 onClick={toggleMastered}
                 className={`px-4 py-2 rounded-xs text-xs pt-btn-standard flex items-center gap-1.5 cursor-pointer transition-all ${
                   isMastered
-                    ? 'bg-emerald-50 border border-emerald-300 text-emerald-800 hover:bg-emerald-100'
-                    : 'bg-[#f5f5f4] hover:bg-[#e7e5e4] text-[#1c1917] border border-[#1c1917]/10'
+                    ? 'bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100'
+                    : 'bg-[#f5f5f4] dark:bg-[#252221] hover:bg-[#e7e5e4] dark:hover:bg-neutral-800 text-[#1c1917] dark:text-[#f5f5f4] border border-[#1c1917]/10 dark:border-neutral-700'
                 }`}
               >
-                <CheckCircle className={`w-3.5 h-3.5 ${isMastered ? 'text-emerald-600' : 'text-[#78716c]'}`} />
+                <CheckCircle className={`w-3.5 h-3.5 ${isMastered ? 'text-emerald-600 dark:text-emerald-400' : 'text-[#78716c] dark:text-[#a8a29e]'}`} />
                 <span>{isMastered ? 'Mastered' : 'Mark Mastered'}</span>
               </button>
 
               <button
                 onClick={handleNext}
-                className="px-4 py-2 rounded-xs bg-[#0369a1] hover:bg-[#075985] text-white text-xs pt-btn-standard flex items-center gap-1 cursor-pointer transition-colors shadow-2xs"
+                className="px-4 py-2 rounded-xs bg-[#0369a1] dark:bg-[#38bdf8] hover:bg-[#075985] dark:hover:bg-[#0ea5e9] text-white dark:text-[#121110] font-semibold text-xs pt-btn-standard flex items-center gap-1 cursor-pointer transition-colors shadow-2xs"
               >
                 <span>Next</span>
                 <ChevronRight className="w-4 h-4" />
