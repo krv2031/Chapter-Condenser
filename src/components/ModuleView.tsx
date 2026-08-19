@@ -27,6 +27,98 @@ interface ShuffledOption {
   isCorrect: boolean;
 }
 
+const FormattedPointContent: React.FC<{ text: string }> = ({ text }) => {
+  // 1. Check if text contains multiple labeled definitions (e.g. "Discoverability: ... Understanding: ...")
+  if (text.includes(":") && /[A-Z][a-zA-Z\s]{1,35}:/.test(text)) {
+    const labeledSegments = text.split(/(?<=[.!?])\s+(?=[A-Z][a-zA-Z\s]{1,35}:)/);
+    if (labeledSegments.length > 1) {
+      return (
+        <div className="flex flex-col gap-3 mt-1.5">
+          {labeledSegments.map((seg, idx) => {
+            const colonIdx = seg.indexOf(':');
+            if (colonIdx > 0 && colonIdx < 40) {
+              const label = seg.substring(0, colonIdx + 1);
+              const rest = seg.substring(colonIdx + 1);
+              return (
+                <div key={idx} className="pl-3.5 border-l-2 border-[#0369a1]/30 dark:border-[#38bdf8]/40 py-0.5 pt-takeaway-body text-[#444141] dark:text-[#d6d3d1]">
+                  <span className="font-semibold text-[#1c1917] dark:text-[#f5f5f4]">{label}</span>
+                  <span>{rest}</span>
+                </div>
+              );
+            }
+            return (
+              <div key={idx} className="pl-3.5 border-l-2 border-[#0369a1]/30 dark:border-[#38bdf8]/40 py-0.5 pt-takeaway-body text-[#444141] dark:text-[#d6d3d1]">
+                {seg}
+              </div>
+            );
+          })}
+        </div>
+      );
+    }
+  }
+
+  // 2. Check for semicolon-separated items (3 or more list items)
+  const semicolonItems = text.split(/;\s+/);
+  if (semicolonItems.length >= 3) {
+    return (
+      <div className="flex flex-col gap-2.5 mt-2">
+        {semicolonItems.map((item, idx) => (
+          <div key={idx} className="flex items-start gap-2.5 pl-2 pt-takeaway-body text-[#444141] dark:text-[#d6d3d1]">
+            <span className="text-[#0369a1] dark:text-[#38bdf8] font-bold mt-0.5 select-none">•</span>
+            <span>{item.endsWith('.') ? item : `${item}.`}</span>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  // 3. Check for multiple distinct sentences (break into new indented lines / paragraphs)
+  const sentences = text.split(/(?<=[.!?])\s+(?=[A-Z])/);
+  if (sentences.length > 1) {
+    return (
+      <div className="flex flex-col gap-2.5 mt-1.5">
+        {sentences.map((sent, idx) => {
+          const colonIdx = sent.indexOf(':');
+          if (colonIdx > 0 && colonIdx < 40 && !sent.startsWith('http')) {
+            const label = sent.substring(0, colonIdx + 1);
+            const rest = sent.substring(colonIdx + 1);
+            return (
+              <div key={idx} className="pl-3 border-l border-[#1c1917]/15 dark:border-neutral-700 py-0.5 pt-takeaway-body text-[#444141] dark:text-[#d6d3d1]">
+                <span className="font-semibold text-[#1c1917] dark:text-[#f5f5f4]">{label}</span>
+                <span>{rest}</span>
+              </div>
+            );
+          }
+          return (
+            <div key={idx} className="pl-3 border-l border-[#1c1917]/15 dark:border-neutral-700 py-0.5 pt-takeaway-body text-[#444141] dark:text-[#d6d3d1]">
+              {sent}
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
+  // Single line with a colon label
+  const colonIdx = text.indexOf(':');
+  if (colonIdx > 0 && colonIdx < 40 && !text.startsWith('http')) {
+    const label = text.substring(0, colonIdx + 1);
+    const rest = text.substring(colonIdx + 1);
+    return (
+      <div className="pl-3 border-l border-[#1c1917]/15 dark:border-neutral-700 py-0.5 pt-takeaway-body text-[#444141] dark:text-[#d6d3d1]">
+        <span className="font-semibold text-[#1c1917] dark:text-[#f5f5f4]">{label}</span>
+        <span>{rest}</span>
+      </div>
+    );
+  }
+
+  return (
+    <p className="pt-takeaway-body text-[#444141] dark:text-[#d6d3d1] text-pretty">
+      {text}
+    </p>
+  );
+};
+
 function shuffleOptions(quiz: QuizQuestion): ShuffledOption[] {
   const list: ShuffledOption[] = quiz.options.map((opt, idx) => ({
     text: opt,
@@ -391,9 +483,7 @@ export const ModuleView: React.FC<ModuleViewProps> = ({
                   <h4 className="pt-takeaway-head text-[#1c1917] dark:text-[#f5f5f4] mb-2">
                     {pt.head}
                   </h4>
-                  <p className="pt-takeaway-body text-[#444141] dark:text-[#d6d3d1] text-pretty">
-                    {pt.text}
-                  </p>
+                  <FormattedPointContent text={pt.text} />
                 </div>
               </div>
             ))}

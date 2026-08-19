@@ -156,7 +156,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 {resetSuccess ? (
                   <div className="p-3 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800 rounded-xs text-emerald-900 dark:text-emerald-300 text-xs font-medium flex items-center justify-center gap-2">
                     <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                    <span>All progress, quiz scores, and notes have been reset!</span>
+                    <span>All progress, quiz scores, flashcards, and notes have been reset!</span>
                   </div>
                 ) : !confirmReset ? (
                   <button
@@ -164,13 +164,13 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                     className="w-full py-2.5 bg-rose-50 dark:bg-rose-950/40 hover:bg-rose-100 dark:hover:bg-rose-900/50 border border-rose-200 dark:border-rose-800 text-rose-800 dark:text-rose-300 rounded-xs text-xs pt-btn-standard flex items-center justify-center gap-2 cursor-pointer transition-colors"
                   >
                     <RotateCcw className="w-3.5 h-3.5" />
-                    <span>Reset All Progress & Notes</span>
+                    <span>Reset All Progress, Flashcards & Notes</span>
                   </button>
                 ) : (
                   <div className="p-3.5 bg-rose-50 dark:bg-rose-950/40 border border-rose-300 dark:border-rose-800 rounded-xs space-y-2.5">
                     <div className="text-xs text-rose-900 dark:text-rose-200 font-medium flex items-start gap-1.5">
                       <AlertTriangle className="w-4 h-4 text-rose-600 dark:text-rose-400 flex-none mt-0.5" />
-                      <span>Are you sure? This will clear all completed parts, bookmarks, and notes.</span>
+                      <span>Are you sure? This will clear all completed parts, bookmarks, flashcard mastery, and notes.</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <button

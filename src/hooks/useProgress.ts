@@ -176,6 +176,7 @@ export function useProgress() {
     try {
       localStorage.removeItem(STORAGE_KEY);
       localStorage.removeItem('pageturn_mastered_flashcards');
+      window.dispatchEvent(new Event('pageturn_reset_progress'));
     } catch (e) {
       console.warn('Error clearing localStorage:', e);
     }

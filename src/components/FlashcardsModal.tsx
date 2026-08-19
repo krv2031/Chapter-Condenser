@@ -102,6 +102,29 @@ export const FlashcardsModal: React.FC<FlashcardsModalProps> = ({ isOpen, onClos
     }
   });
 
+  // Re-sync mastered flashcards whenever modal opens or global reset is triggered
+  React.useEffect(() => {
+    const syncMastered = () => {
+      try {
+        const saved = localStorage.getItem('pageturn_mastered_flashcards');
+        setMasteredIds(saved ? JSON.parse(saved) : []);
+      } catch {
+        setMasteredIds([]);
+      }
+    };
+
+    if (isOpen) {
+      syncMastered();
+    }
+
+    window.addEventListener('pageturn_reset_progress', syncMastered);
+    window.addEventListener('storage', syncMastered);
+    return () => {
+      window.removeEventListener('pageturn_reset_progress', syncMastered);
+      window.removeEventListener('storage', syncMastered);
+    };
+  }, [isOpen]);
+
   const allCards = useMemo(() => {
     if (selectedFilter === 'core') {
       return CORE_PRINCIPLES_FLASHCARDS;
