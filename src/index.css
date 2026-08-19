@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: "Source Serif 4", Georgia, Cambria, serif;
+    --font-body: "Source Serif 4", Georgia, Cambria, serif;
+    --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    --font-heading-weight: 600;
+
+    --color-bg: #f5f4f0;
+    --color-surface: #ffffff;
+    --color-text: #1c1917;
+    --color-text-muted: #57534e;
+    --color-text-subtle: #78716c;
+
+    --color-accent: #0284c7;
+    --color-accent-700: #0369a1;
+    --color-accent-800: #075985;
+    --color-accent-900: #0c4a6e;
+    --color-accent-100: #f0f9ff;
+    --color-accent-50: #f8fafc;
+
+    --color-border: rgba(28, 25, 23, 0.12);
+    --color-border-hover: rgba(3, 105, 161, 0.45);
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.68;
+    font-weight: 400;
+    letter-spacing: 0.008em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    color: var(--color-text);
+  }
+}
+
+/* Refined Typography Classes with Open Spacing and Relaxed Rhythm */
+.pt-dash-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(40px, 5.5vw, 60px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.pt-mod-card-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.22;
+  letter-spacing: 0;
+}
+
+.pt-mod-citation {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--color-accent-700);
+}
+
+.pt-mod-viewer-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(32px, 4.5vw, 42px);
+  line-height: 1.18;
+  letter-spacing: -0.005em;
+}
+
+.pt-stage-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(28px, 4vw, 38px);
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+}
+
+.pt-stage-intro {
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 1.65;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+}
+
+.pt-takeaway-head {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.28;
+  letter-spacing: 0;
+}
+
+.pt-takeaway-body {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.68;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+}
+
+.pt-kicker {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+}
+
+.pt-chip {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.pt-btn-standard {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+}
+
+.pt-btn-footer {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+}
+
+/* Horizontal scroll rail */
+.pt-scroll {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-accent-700) #e7e5e4;
+}
+
+.pt-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.pt-scroll::-webkit-scrollbar-track {
+  background: #e7e5e4;
+  border-radius: 3px;
+}
+
+.pt-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-accent-700);
+  border-radius: 3px;
+}

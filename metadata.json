@@ -1,0 +1,8 @@
+{
+  "name": "PageTurn - Reading, Condensed",
+  "description": "Interactive learning app with condensed stages, progress tracking, knowledge checks, audio narration, and deep exploration for design and HCI readings.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
